@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://ci8avb1167h7l"]
+
+[sub_resource type="Gradient" id="Gradient_utuqc"]
+offsets = PackedFloat32Array(0, 0.614618, 1)
+colors = PackedColorArray(0, 0, 1, 1, 0.568627, 1, 0.737255, 1, 1, 1, 0.517647, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rujks"]
+radius = 16.0
+
+[node name="Bullet" type="Bullet" groups=["bullet"]]
+speed_factor = 500.0
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+scale = Vector2(10, 10)
+amount = 512
+lifetime = 0.25
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 2.0
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+color_ramp = SubResource("Gradient_utuqc")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rujks")
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]

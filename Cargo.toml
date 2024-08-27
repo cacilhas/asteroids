@@ -1,0 +1,14 @@
+[workspace]
+
+resolver = "1"
+
+members = ["game"]
+
+[profile.release]
+opt-level = 5
+codegen-units = 1
+panic = "abort"
+debug = false
+lto   = true
+rpath = false
+strip = true

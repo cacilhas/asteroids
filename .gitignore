@@ -1,0 +1,8 @@
+.*
+*~
+*.tmp
+/exports
+/target
+Cargo.lock
+
+!.gitignore

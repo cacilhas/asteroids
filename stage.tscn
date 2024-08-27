@@ -1,0 +1,216 @@
+[gd_scene load_steps=15 format=3 uid="uid://bn3qgx10748gc"]
+
+[ext_resource type="PackedScene" uid="uid://ci8avb1167h7l" path="res://bullet.tscn" id="1_0tw4n"]
+[ext_resource type="Script" path="res://parallax.gd" id="1_5ow0w"]
+[ext_resource type="Texture2D" uid="uid://dqk68y4quwfw3" path="res://assets/dart.png" id="1_t0m57"]
+[ext_resource type="PackedScene" uid="uid://ceceov2je5c6l" path="res://meteor.tscn" id="2_5ivgt"]
+[ext_resource type="AudioStream" uid="uid://bw7is1wvckh1g" path="res://assets/engine.wav" id="3_s5iym"]
+[ext_resource type="AudioStream" uid="uid://c8hjxhycvyrtn" path="res://assets/shot.wav" id="4_iwop5"]
+[ext_resource type="AudioStream" uid="uid://bmw014wqkif5b" path="res://assets/player-exploding.wav" id="7_5cmmq"]
+[ext_resource type="FontFile" uid="uid://c67vybqfnhne1" path="res://assets/game-over.ttf" id="8_b3cmc"]
+[ext_resource type="FontFile" uid="uid://c3hl5p4xvhp5h" path="res://assets/main.ttf" id="9_xovhb"]
+
+[sub_resource type="Gradient" id="Gradient_1v7wo"]
+offsets = PackedFloat32Array(0, 0.502283, 0.762557, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.872456, 0.366763, 5.77569e-07, 1, 0.872456, 0.366763, 5.77569e-07, 1, 1, 1, 0, 1)
+
+[sub_resource type="Curve" id="Curve_6mr81"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_8oyq6"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_bqssc"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_w15y3"]
+offsets = PackedFloat32Array(0, 0.0830565, 0.302326, 0.521595, 0.757475, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.0823529, 0.0823529, 1, 0.64049, 0.423331, 3.85046e-07, 1, 0.781346, 0.581727, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1)
+
+[node name="Stage" type="Stage"]
+start_menu = "res://start_menu.tscn"
+bullet_scene = ExtResource("1_0tw4n")
+meteor_scene = ExtResource("2_5ivgt")
+amount_of_meteors = 20
+accel = 200.0
+rotation_speed = 6.28319
+
+[node name="Background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.133333, 0.12549, 0.203922, 1)
+
+[node name="Parallax1" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.25, 0.25)
+repeat_size = Vector2(1280, 720)
+repeat_times = 2
+script = ExtResource("1_5ow0w")
+
+[node name="Stars" type="Stars" parent="Parallax1"]
+amount = 512
+star_size = 1.0
+
+[node name="Parallax2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(1280, 720)
+repeat_times = 2
+script = ExtResource("1_5ow0w")
+
+[node name="Stars" type="Stars" parent="Parallax2"]
+amount = 256
+star_size = 2.0
+
+[node name="Parallax3" type="Parallax2D" parent="."]
+repeat_size = Vector2(1280, 720)
+repeat_times = 2
+script = ExtResource("1_5ow0w")
+
+[node name="Stars" type="Stars" parent="Parallax3"]
+amount = 128
+star_size = 3.0
+
+[node name="Player" type="Area2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(0.05, 0.05)
+
+[node name="Engine" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("3_s5iym")
+
+[node name="Shot" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("4_iwop5")
+
+[node name="Fire" type="CPUParticles2D" parent="Player"]
+position = Vector2(-320, 0)
+rotation = 3.14159
+emitting = false
+amount = 192
+randomness = 0.5
+lifetime_randomness = 0.25
+spread = 25.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1024.0
+initial_velocity_max = 2048.0
+angular_velocity_min = -628.32
+angular_velocity_max = 628.32
+linear_accel_min = -24.0
+linear_accel_max = 24.0
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_1v7wo")
+
+[node name="Dart" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_t0m57")
+
+[node name="Collision" type="CollisionPolygon2D" parent="Player"]
+polygon = PackedVector2Array(-512, -256, 512, 0, -512, 256, -322, 0)
+
+[node name="PlayerExplosion" type="CPUParticles2D" parent="."]
+position = Vector2(640, 360)
+emitting = false
+amount = 1024
+lifetime = 0.5
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 48.0
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 120.0
+initial_velocity_max = 720.0
+angular_velocity_min = -6.28
+angular_velocity_max = 6.28
+angular_velocity_curve = SubResource("Curve_6mr81")
+linear_accel_min = -100.0
+linear_accel_max = 100.0
+radial_accel_min = -6.28
+radial_accel_max = 6.28
+radial_accel_curve = SubResource("Curve_8oyq6")
+angle_min = -180.0
+angle_max = 180.0
+angle_curve = SubResource("Curve_bqssc")
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_w15y3")
+
+[node name="PlayerExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_5cmmq")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.125
+one_shot = true
+autostart = true
+
+[node name="HUD" type="Control" parent="."]
+z_index = 100
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameOver" type="Label" parent="HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -55.5
+offset_right = 159.0
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/font = ExtResource("8_b3cmc")
+theme_override_font_sizes/font_size = 120
+text = "Game Over"
+
+[node name="Score" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -243.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 57.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("9_xovhb")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 2
+
+[node name="HighScore" type="Label" parent="HUD"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 243.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("9_xovhb")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[connection signal="moved" from="." to="Parallax1" method="_on_stage_moved"]
+[connection signal="moved" from="." to="Parallax2" method="_on_stage_moved"]
+[connection signal="moved" from="." to="Parallax3" method="_on_stage_moved"]
+[connection signal="body_entered" from="Player" to="." method="on_player_body_entered"]
+[connection signal="timeout" from="ShootTimer" to="." method="on_shoot_timer_timeout"]

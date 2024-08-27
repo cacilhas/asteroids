@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://ceceov2je5c6l"]
+
+[ext_resource type="Texture2D" uid="uid://drw74fun4mupy" path="res://assets/meteor1.png" id="1_brgfs"]
+[ext_resource type="Texture2D" uid="uid://ci4ibr150qdds" path="res://assets/meteor2.png" id="2_ahbvb"]
+[ext_resource type="Texture2D" uid="uid://b7hhrju33uc4u" path="res://assets/meteor3.png" id="3_kverj"]
+[ext_resource type="Texture2D" uid="uid://dcacotm5emy0d" path="res://assets/meteor4.png" id="4_dpapm"]
+[ext_resource type="AudioStream" uid="uid://bmg7ue3wccxk7" path="res://assets/explosion.wav" id="5_jvcoy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5b6a0"]
+radius = 50.0
+
+[node name="Meteor" type="Meteor" groups=["meteor"]]
+min_force = 10.0
+max_force = 100.0
+mass = 10.0
+
+[node name="Meteor1" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_brgfs")
+
+[node name="Meteor2" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_ahbvb")
+
+[node name="Meteor3" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_kverj")
+
+[node name="Meteor4" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_dpapm")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5b6a0")
+disabled = true
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_jvcoy")
