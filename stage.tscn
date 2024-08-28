@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bn3qgx10748gc"]
+[gd_scene load_steps=16 format=3 uid="uid://bn3qgx10748gc"]
 
 [ext_resource type="PackedScene" uid="uid://ci8avb1167h7l" path="res://bullet.tscn" id="1_0tw4n"]
 [ext_resource type="Script" path="res://parallax.gd" id="1_5ow0w"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bw7is1wvckh1g" path="res://assets/engine.wav" id="3_s5iym"]
 [ext_resource type="AudioStream" uid="uid://c8hjxhycvyrtn" path="res://assets/shot.wav" id="4_iwop5"]
 [ext_resource type="AudioStream" uid="uid://bmw014wqkif5b" path="res://assets/player-exploding.wav" id="7_5cmmq"]
+[ext_resource type="Texture2D" uid="uid://da7oulh7cbm00" path="res://assets/compass.png" id="8_5sypk"]
 [ext_resource type="FontFile" uid="uid://c67vybqfnhne1" path="res://assets/game-over.ttf" id="8_b3cmc"]
 [ext_resource type="FontFile" uid="uid://c3hl5p4xvhp5h" path="res://assets/main.ttf" id="9_xovhb"]
 
@@ -147,6 +148,10 @@ stream = ExtResource("7_5cmmq")
 wait_time = 0.125
 one_shot = true
 autostart = true
+
+[node name="Compass" type="Compass" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("8_5sypk")
 
 [node name="HUD" type="Control" parent="."]
 z_index = 100

@@ -1,5 +1,6 @@
 #[macro_use] mod macros;
 mod bullet;
+mod compass;
 mod globals;
 mod meteor;
 mod sice_string;

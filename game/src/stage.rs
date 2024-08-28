@@ -1,3 +1,4 @@
+use crate::compass::Compass;
 use crate::globals::Globals;
 use crate::meteor::Meteor;
 use godot::engine::{
@@ -22,6 +23,7 @@ struct Stage {
     #[export]
     rotation_speed: real,
     player: Option<Gd<Area2D>>,
+    compass: Option<Gd<Compass>>,
     engine: Option<Gd<AudioStreamPlayer2D>>,
     shot: Option<Gd<AudioStreamPlayer2D>>,
     fire: Option<Gd<CpuParticles2D>>,
@@ -38,6 +40,7 @@ struct Stage {
 
 impl Stage {
     unwrap![player: Area2D];
+    unwrap![compass: Compass];
     unwrap![engine: AudioStreamPlayer2D];
     unwrap![shot: AudioStreamPlayer2D];
     unwrap![fire: CpuParticles2D];
@@ -105,6 +108,32 @@ impl Stage {
             * rotation_speed * delta
         );
     }
+
+    fn turn_compass(&mut self) {
+        let meteors: Vec<Gd<Meteor>> = self.base()
+            .get_children()
+            .iter_shared()
+            .filter(|e| e.is_in_group("meteor".into()))
+            .map(|e| e.cast::<Meteor>())
+            .collect();
+        let player_position = self.player().get_position();
+        let mut closer: Option<Vector2> = None;
+        for meteor in meteors {
+            let meteor: Gd<Meteor> = meteor.cast();
+            let position = meteor.get_position();
+            if closer.is_none()
+                || position.distance_squared_to(player_position)
+                    < closer.unwrap().distance_squared_to(player_position) {
+                        let _ = closer.insert(position);
+            }
+        }
+        if let Some(closer) = closer {
+            self.compass().set_visible(true);
+            self.compass().look_at(closer);
+        } else {
+            self.compass().set_visible(false);
+        }
+    }
 }
 
 #[godot_api]
@@ -112,6 +141,7 @@ impl INode2D for Stage {
 
     fn ready(&mut self) {
         self.player = Some(self.base().get_node_as("Player"));
+        self.compass = Some(self.base().get_node_as("Compass"));
         self.engine = Some(self.base().get_node_as("Player/Engine"));
         self.shot = Some(self.base().get_node_as("Player/Shot"));
         self.fire = Some(self.base().get_node_as("Player/Fire"));
@@ -160,10 +190,12 @@ impl INode2D for Stage {
             }
 
             self.arrows_action(delta, &input);
+            self.turn_compass();
 
         } else {
             self.fire().set_emitting(false);
             self.engine().stop();
+            self.compass().set_visible(false);
         }
 
         let speed = self.speed * -1.0;
