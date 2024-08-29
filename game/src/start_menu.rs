@@ -3,7 +3,7 @@ use std::f64::consts::PI;
 use chrono::Utc;
 use godot::engine::{Control, Engine, IControl, InputEvent, Label, Sprite2D};
 use godot::prelude::*;
-use crate::sice_string::SinceString;
+use crate::since_string::SinceString;
 
 use crate::globals::Globals;
 

@@ -3,7 +3,7 @@ mod bullet;
 mod compass;
 mod globals;
 mod meteor;
-mod sice_string;
+mod since_string;
 mod stage;
 mod stars;
 mod start_menu;

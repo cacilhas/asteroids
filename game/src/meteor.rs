@@ -96,7 +96,7 @@ impl Meteor {
     #[func]
     pub(crate) fn go_to_random_position(&mut self) {
         let center = Vector2::new(640.0, 360.0);
-        let mut position = center.clone();
+        let mut position = center;
         while position.distance_squared_to(center) <= 360_000.0 {
                 position = Vector2::new(
                     randf_range(-1_280.0, 2_560.0) as real,

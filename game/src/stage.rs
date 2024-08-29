@@ -2,7 +2,17 @@ use crate::compass::Compass;
 use crate::globals::Globals;
 use crate::meteor::Meteor;
 use godot::engine::{
-    Area2D, AudioStreamPlayer2D, CollisionObject2D, CollisionPolygon2D, CpuParticles2D, Engine, InputEvent, InputEventMouseMotion, Label, Node2D, Timer
+    Area2D,
+    AudioStreamPlayer2D,
+    CollisionObject2D,
+    CollisionPolygon2D,
+    CpuParticles2D,
+    Engine,
+    InputEvent,
+    InputEventMouseMotion,
+    Label,
+    Node2D,
+    Timer,
 };
 use godot::prelude::*;
 
@@ -220,7 +230,6 @@ impl INode2D for Stage {
         if event.is_class("InputEventMouseMotion".into()) {
             let mouse: Gd<InputEventMouseMotion> = event.clone().cast();
             self.player().look_at(mouse.get_position());
-            return;
         }
     }
 }
