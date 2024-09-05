@@ -9,7 +9,7 @@ A recreation of the classic Asteroids game.
 Use [`cargo`][]:
 
 ```sh
-cargo build
+cargo +nightly build
 ```
 
 Then run [Godot Editor][] in order to build the application.
@@ -25,7 +25,7 @@ make sence to embed the PCK.
 Use [`cargo`][]:
 
 ```sh
-cargo build --release
+cargo +nightly build --release
 ```
 
 The run [Godot Editor][] to build the application **without** debug symbols.
