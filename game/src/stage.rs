@@ -121,7 +121,7 @@ impl Stage {
         );
     }
 
-    fn turn_compass(&mut self, delta: real) {
+    fn turn_compass(&mut self) {
         let meteors: Vec<Gd<Meteor>> = self.base()
             .get_children()
             .iter_shared()
@@ -140,14 +140,9 @@ impl Stage {
             }
         }
         if let Some(closer) = closer {
-            self.compass().set_visible(true);
-            let mut rotation = self.compass().get_rotation();
-            self.compass().look_at(closer);
-            let angle = self.compass().get_rotation();
-            rotation += (angle - rotation) * 2.0 * delta;
-            self.compass().set_rotation(rotation);
+            self.compass().call("set_closer".into(), &[Variant::from(closer)]);
         } else {
-            self.compass().set_visible(false);
+            self.compass().call("no_closer".into(), &[]);
         }
     }
 }
@@ -207,7 +202,7 @@ impl INode2D for Stage {
             }
 
             self.arrows_action(delta, &input);
-            self.turn_compass(delta);
+            self.turn_compass();
 
         } else {
             self.fire().set_emitting(false);
