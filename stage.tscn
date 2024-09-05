@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bn3qgx10748gc"]
+[gd_scene load_steps=18 format=3 uid="uid://bn3qgx10748gc"]
 
 [ext_resource type="PackedScene" uid="uid://ci8avb1167h7l" path="res://bullet.tscn" id="1_0tw4n"]
 [ext_resource type="Script" path="res://parallax.gd" id="1_5ow0w"]
 [ext_resource type="Texture2D" uid="uid://dqk68y4quwfw3" path="res://assets/dart.png" id="1_t0m57"]
 [ext_resource type="PackedScene" uid="uid://ceceov2je5c6l" path="res://meteor.tscn" id="2_5ivgt"]
+[ext_resource type="AudioStream" uid="uid://b2o3q2ao2denf" path="res://assets/loop.mp3" id="3_387fj"]
 [ext_resource type="AudioStream" uid="uid://bw7is1wvckh1g" path="res://assets/engine.wav" id="3_s5iym"]
 [ext_resource type="AudioStream" uid="uid://c8hjxhycvyrtn" path="res://assets/shot.wav" id="4_iwop5"]
 [ext_resource type="AudioStream" uid="uid://bmw014wqkif5b" path="res://assets/player-exploding.wav" id="7_5cmmq"]
@@ -48,6 +49,11 @@ meteor_scene = ExtResource("2_5ivgt")
 amount_of_meteors = 20
 accel = 200.0
 rotation_speed = 6.28319
+
+[node name="Theme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_387fj")
+volume_db = -4.0
+autoplay = true
 
 [node name="Background" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(1280, 720)

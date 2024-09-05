@@ -37,6 +37,7 @@ struct Stage {
     engine: Option<Gd<AudioStreamPlayer2D>>,
     shot: Option<Gd<AudioStreamPlayer2D>>,
     fire: Option<Gd<CpuParticles2D>>,
+    theme: Option<Gd<AudioStreamPlayer>>,
     shoot_timer: Option<Gd<Timer>>,
     start_menu_scene: Option<Gd<PackedScene>>,
     speed: Vector2,
@@ -54,6 +55,7 @@ impl Stage {
     unwrap![engine: AudioStreamPlayer2D];
     unwrap![shot: AudioStreamPlayer2D];
     unwrap![fire: CpuParticles2D];
+    unwrap![theme: AudioStreamPlayer];
     unwrap![start_menu_scene: PackedScene];
     unwrap![shoot_timer: Timer];
     unwrap![score_label: Label];
@@ -159,6 +161,7 @@ impl INode2D for Stage {
         self.engine = Some(self.base().get_node_as("Player/Engine"));
         self.shot = Some(self.base().get_node_as("Player/Shot"));
         self.fire = Some(self.base().get_node_as("Player/Fire"));
+        self.theme = Some(self.base().get_node_as("Theme"));
         self.start_menu_scene = Some(load(self.start_menu.clone()));
         self.shoot_timer = Some(self.base().get_node_as("ShootTimer"));
         self.speed = Vector2::ZERO;
@@ -266,6 +269,7 @@ impl Stage {
             explosion.set_emitting(true);
             let mut label: Gd<Label> = self.base().get_node_as("HUD/GameOver");
             label.set_visible(true);
+            self.theme().stop();
 
             let mut globals: Gd<Globals> = Engine::singleton()
                 .get_singleton("Globals".into())
