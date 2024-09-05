@@ -36,9 +36,9 @@ impl INode2D for Stars {
 }
 
 static COLORS: [Color; 5] = [
-    Color {r: 1.0, g: 0.75, b: 0.75, a: 1.0},
-    Color {r: 1.0, g: 0.875, b: 0.75, a: 1.0},
-    Color {r: 1.0, g: 1.0, b: 0.75, a: 1.0},
-    Color {r: 0.75, g: 0.75, b: 1.0, a: 1.0},
-    Color {r: 0.875, g: 0.875, b: 1.0, a: 1.0},
+    Color {r: 1.0, g: 0.8, b: 0.8, a: 1.0},
+    Color {r: 1.0, g: 0.9, b: 0.8, a: 1.0},
+    Color {r: 1.0, g: 1.0, b: 0.8, a: 1.0},
+    Color {r: 0.8, g: 0.8, b: 1.0, a: 1.0},
+    Color {r: 0.9, g: 0.9, b: 1.0, a: 1.0},
 ];
