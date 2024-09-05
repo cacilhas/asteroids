@@ -16,18 +16,22 @@ mass = 10.0
 
 [node name="Meteor1" type="Sprite2D" parent="."]
 visible = false
+self_modulate = Color(20, 1, 1, 1)
 texture = ExtResource("1_brgfs")
 
 [node name="Meteor2" type="Sprite2D" parent="."]
 visible = false
+self_modulate = Color(20, 1, 1, 1)
 texture = ExtResource("2_ahbvb")
 
 [node name="Meteor3" type="Sprite2D" parent="."]
 visible = false
+self_modulate = Color(20, 1, 1, 1)
 texture = ExtResource("3_kverj")
 
 [node name="Meteor4" type="Sprite2D" parent="."]
 visible = false
+self_modulate = Color(20, 1, 1, 1)
 texture = ExtResource("4_dpapm")
 
 [node name="Collision" type="CollisionShape2D" parent="."]

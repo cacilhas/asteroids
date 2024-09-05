@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bn3qgx10748gc"]
+[gd_scene load_steps=17 format=3 uid="uid://bn3qgx10748gc"]
 
 [ext_resource type="PackedScene" uid="uid://ci8avb1167h7l" path="res://bullet.tscn" id="1_0tw4n"]
 [ext_resource type="Script" path="res://parallax.gd" id="1_5ow0w"]
@@ -10,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://da7oulh7cbm00" path="res://assets/compass.png" id="8_5sypk"]
 [ext_resource type="FontFile" uid="uid://c67vybqfnhne1" path="res://assets/game-over.ttf" id="8_b3cmc"]
 [ext_resource type="FontFile" uid="uid://c3hl5p4xvhp5h" path="res://assets/main.ttf" id="9_xovhb"]
+
+[sub_resource type="Environment" id="Environment_8wyq7"]
+background_mode = 3
+glow_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_1v7wo"]
 offsets = PackedFloat32Array(0, 0.502283, 0.762557, 1)
@@ -79,6 +83,9 @@ script = ExtResource("1_5ow0w")
 [node name="Stars" type="Stars" parent="Parallax3"]
 amount = 128
 star_size = 3.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8wyq7")
 
 [node name="Player" type="Area2D" parent="."]
 position = Vector2(640, 360)
