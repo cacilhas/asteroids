@@ -10,9 +10,19 @@
 radius = 50.0
 
 [node name="Meteor" type="Meteor" groups=["meteor"]]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 min_force = 10.0
 max_force = 100.0
 mass = 10.0
+script = null
 
 [node name="Meteor1" type="Sprite2D" parent="."]
 visible = false

@@ -42,10 +42,10 @@ possible.
 ## License
 
 - [The 3-Clause BSD License][]
-- [Copyright 2024 Rodrigo Cacilhας &lt;montegasppa@cacilhas.info&gt;][]
+- [Copyright 2024 Rodrigo Cacilhας &lt;montegasppa@cacilhas.cc&gt;][]
 
 [`cargo`]: https://doc.rust-lang.org/cargo/
-[Copyright 2024 Rodrigo Cacilhας &lt;montegasppa@cacilhas.info&gt;]: https://github.com/cacilhas/asteroids/blob/master/COPYING
+[Copyright 2024 Rodrigo Cacilhας &lt;montegasppa@cacilhas.cc&gt;]: https://github.com/cacilhas/asteroids/blob/master/COPYING
 [GDScript]: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/
 [Godot Editor]: https://editor.godotengine.org/
 [Godot Engine]: https://godotengine.org/

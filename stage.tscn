@@ -43,12 +43,22 @@ offsets = PackedFloat32Array(0, 0.0830565, 0.302326, 0.521595, 0.757475, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 0.0823529, 0.0823529, 1, 0.64049, 0.423331, 3.85046e-07, 1, 0.781346, 0.581727, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1)
 
 [node name="Stage" type="Stage"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 start_menu = "res://start_menu.tscn"
 bullet_scene = ExtResource("1_0tw4n")
 meteor_scene = ExtResource("2_5ivgt")
 amount_of_meteors = 20
 accel = 200.0
 rotation_speed = 6.28319
+script = null
 
 [node name="Theme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_387fj")
@@ -68,8 +78,18 @@ repeat_times = 2
 script = ExtResource("1_5ow0w")
 
 [node name="Stars" type="Stars" parent="Parallax1"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 amount = 512
 star_size = 1.0
+script = null
 
 [node name="Parallax2" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.5, 0.5)
@@ -78,8 +98,18 @@ repeat_times = 2
 script = ExtResource("1_5ow0w")
 
 [node name="Stars" type="Stars" parent="Parallax2"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 amount = 256
 star_size = 2.0
+script = null
 
 [node name="Parallax3" type="Parallax2D" parent="."]
 repeat_size = Vector2(1280, 720)
@@ -87,8 +117,18 @@ repeat_times = 2
 script = ExtResource("1_5ow0w")
 
 [node name="Stars" type="Stars" parent="Parallax3"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 amount = 128
 star_size = 3.0
+script = null
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8wyq7")
@@ -163,8 +203,18 @@ one_shot = true
 autostart = true
 
 [node name="Compass" type="Compass" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(640, 360)
 texture = ExtResource("8_5sypk")
+script = null
 
 [node name="HUD" type="Control" parent="."]
 z_index = 100
@@ -227,8 +277,5 @@ theme_override_fonts/font = ExtResource("9_xovhb")
 theme_override_font_sizes/font_size = 64
 text = "0"
 
-[connection signal="moved" from="." to="Parallax1" method="_on_stage_moved"]
-[connection signal="moved" from="." to="Parallax2" method="_on_stage_moved"]
-[connection signal="moved" from="." to="Parallax3" method="_on_stage_moved"]
 [connection signal="body_entered" from="Player" to="." method="on_player_body_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="on_shoot_timer_timeout"]
